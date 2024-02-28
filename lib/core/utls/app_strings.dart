@@ -26,12 +26,18 @@ class AppStrings
   static const String date = 'Date';
   static const String startTime = 'Start Time';
   static const String endTime = 'End Time';
+  static const String color = 'Color';
   static const String createTask = 'Create task';
   static const String toDo = 'ToDo';
   static const String completed = 'COMPLETED';
   static const String taskCompleted = 'Task Completed';
   static const String deleteTask = 'Delete Task';
   static const String cancel = 'Cancel';
+  static const String onBoardingKey = 'onBoarding';
+  static const String noteErrorMsg = 'Enter Valid Note';
+  static const String titleErrorMsg = 'Enter Valid Title';
+
+
 
 
 

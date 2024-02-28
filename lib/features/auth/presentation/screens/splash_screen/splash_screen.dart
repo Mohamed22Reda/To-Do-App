@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:to_do_app/core/database/cach/cach_helper.dart';
+import 'package:to_do_app/core/services/service_locator.dart';
 import 'package:to_do_app/core/utls/app_assets.dart';
-import 'package:to_do_app/core/utls/app_colors.dart';
 import 'package:to_do_app/core/utls/app_strings.dart';
-import 'package:to_do_app/features/presentation/screens/on_bording_screen/on_bording_screens.dart';
+import 'package:to_do_app/features/auth/presentation/screens/on_bording_screen/on_bording_screens.dart';
+import 'package:to_do_app/features/tasks/presentation/screens/homeScreen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,29 +22,34 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   void navigate()
   {
-    Future.delayed(const Duration(seconds: 4),(){
-      Navigator.push(context, MaterialPageRoute(builder: (_)=> OnBordingScreens()));
+    //bool isVisited;
+    bool isVisited = sl<CacheHelper>().getData(
+        key: AppStrings.onBoardingKey,
+    ) ??
+        false;
+    Future.delayed(const Duration(seconds: 3),(){
+       Navigator.push(context,
+          MaterialPageRoute(
+            builder: (_)=> isVisited ?  const HomeScreen() : OnBordingScreens(),),);
     });
   }
   @override
 
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.background,
+        //backgroundColor: AppColors.background,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(AppAssets.logo),
-              const SizedBox(
-                height: 24,
+               SizedBox(
+                height: 24.h,
               ),
               Text(
                 AppStrings.appName,
-                style: GoogleFonts.lato(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                  fontSize: 40.sp,
                 ),
               )
             ],
